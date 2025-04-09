@@ -1,12 +1,9 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.bytebuddy.asm.Advice;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Driver;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +24,7 @@ public class CreateAccountStepdefs {
     WebDriverWait wait;
 
     private WebElement waitForElementVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     @Given("I am using {string} browser")
@@ -48,10 +44,8 @@ public class CreateAccountStepdefs {
         driver.get(url);
     }
 
-    @When("I enter all required information and click {string}")
-    public void iEnterAllRequiredInformationAndClick(String arg0) {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    @When("I enter all required information and click confirm and join")
+    public void iEnterAllRequiredInformationAndClickConfirmAndJoin() {
 
         String dateOfBirth = ".custom-date";
         String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
@@ -82,8 +76,10 @@ public class CreateAccountStepdefs {
         driver.findElement(By.cssSelector(retypePassword))
                 .sendKeys("Abcd123");
 
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+//        Actions actions = new Actions(driver);
+//        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+//
+//        Thread.sleep(5000);
 
         waitForElementVisible(
                 By.cssSelector(confirmTermsAndConditions)).click();
@@ -103,16 +99,12 @@ public class CreateAccountStepdefs {
                 By.xpath("//h2[contains(text(), 'THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND')]")
         );
 
-        // Проверка, что элемент найден и текст соответствует ожиданию
-        //Assert.assertTrue("Сообщение не отображается", thankYouMessage.isDisplayed());
-        Assert.assertEquals(confirmation, thankYouMessage.getText().trim());
-        System.out.println("Account is Created");
+        assertEquals(confirmation, thankYouMessage.getText().trim());
 
     }
 
     @When("Last Name is Missing")
     public void lastNameIsMissing() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         String dateOfBirth = ".custom-date";
         String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
@@ -152,15 +144,14 @@ public class CreateAccountStepdefs {
         waitForElementVisible(
                 By.cssSelector(confirmAndJoin)).click();
 
-          }
+    }
 
     @Then("I see error {string}")
     public void iSeeError(String message) {
         WebElement errorMessage = waitForElementVisible(
                 By.cssSelector("span[for=\"member_lastname\"]\n"));
 
-        Assert.assertEquals(message, errorMessage.getText().trim());
-        System.out.println("Last name is missing");
+        assertEquals(message, errorMessage.getText().trim());
 
     }
 
@@ -180,17 +171,13 @@ public class CreateAccountStepdefs {
     @Then("I should see {}")
     public void iShouldSee(String message) {
 
-
         WebElement errorMessage = driver.findElement(By.xpath("//span[contains(text(), '" + message + "')]"));
-
         String actualMessage = errorMessage.getText();
-
         assertEquals(message, actualMessage);
     }
 
     @When("Confirm registration without Terms and Conditions accept")
     public void confirmRegistrationWithoutTermsAndConditionsAccept() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         String dateOfBirth = ".custom-date";
         String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
@@ -220,8 +207,8 @@ public class CreateAccountStepdefs {
         driver.findElement(By.cssSelector(retypePassword))
                 .sendKeys("Abcd123");
 
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+//        Actions actions = new Actions(driver);
+//        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
         waitForElementVisible(By.cssSelector(iAmAgedOver18)).click();
         waitForElementVisible(By.cssSelector(confirmCodeOfEthics)).click();
@@ -231,7 +218,6 @@ public class CreateAccountStepdefs {
 
     @Then("I see error message")
     public void iSeeErrorMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         WebElement error = waitForElementVisible(
                 By.cssSelector("span[for=\"TermsAccept\"]"));
