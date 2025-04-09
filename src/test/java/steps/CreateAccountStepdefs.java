@@ -24,8 +24,8 @@ import static org.junit.Assert.assertEquals;
 
 public class CreateAccountStepdefs {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 
     private WebElement waitForElementVisible(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -49,21 +49,21 @@ public class CreateAccountStepdefs {
     }
 
     @When("I enter all required information and click {string}")
-    public void iEnterAllRequiredInformationAndClick(String arg0) throws InterruptedException {
+    public void iEnterAllRequiredInformationAndClick(String arg0) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        String dateOfBirth=".custom-date";
-        String firstName="input[id=\"member_firstname\"][name=\"Forename\"]\n";
-        String lastName="input[id=\"member_lastname\"][name=\"Surname\"]";
-        String email ="input[id=\"member_emailaddress\"][name=\"EmailAddress\"]";
-        String confirmEmail="input[id=\"member_confirmemailaddress\"][name=\"ConfirmEmailAddress\"]";
-        String password="#signupunlicenced_password";
-        String retypePassword="#signupunlicenced_confirmpassword";
-        String confirmTermsAndConditions="label[for='sign_up_25']";
-        String iAmAgedOver18="label[for='sign_up_26']";
-        String confirmCodeOfEthics="label[for='fanmembersignup_agreetocodeofethicsandconduct']";
-        String confirmAndJoin ="#signup_form > div.form-actions.noborder > input";
+        String dateOfBirth = ".custom-date";
+        String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
+        String lastName = "input[id=\"member_lastname\"][name=\"Surname\"]";
+        String email = "input[id=\"member_emailaddress\"][name=\"EmailAddress\"]";
+        String confirmEmail = "input[id=\"member_confirmemailaddress\"][name=\"ConfirmEmailAddress\"]";
+        String password = "#signupunlicenced_password";
+        String retypePassword = "#signupunlicenced_confirmpassword";
+        String confirmTermsAndConditions = "label[for='sign_up_25']";
+        String iAmAgedOver18 = "label[for='sign_up_26']";
+        String confirmCodeOfEthics = "label[for='fanmembersignup_agreetocodeofethicsandconduct']";
+        String confirmAndJoin = "#signup_form > div.form-actions.noborder > input";
 
         driver.findElement(By.cssSelector(dateOfBirth))
                 .sendKeys("04/10/1986", Keys.ENTER);
@@ -85,23 +85,15 @@ public class CreateAccountStepdefs {
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmTermsAndConditions)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmTermsAndConditions)).click();
+        waitForElementVisible(
+                By.cssSelector(iAmAgedOver18)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmCodeOfEthics)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmAndJoin)).click();
 
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(iAmAgedOver18)).click();
-
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmCodeOfEthics)).click();
-
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmAndJoin)).click();
-
-        Thread.sleep(500);
-
-        //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(confirmTermsAndConditions))).click();
-        //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(iAmAgedOver18))).click();
-        //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(confirmCodeOfEthics))).click();
     }
 
     @Then("I see {string}")
@@ -118,21 +110,20 @@ public class CreateAccountStepdefs {
 
     }
 
-    @When("I enter all required information except {string} and click {string}")
-    public void iEnterAllRequiredInformationExceptAndClick(String arg0, String arg1) throws InterruptedException {
+    @When("Last Name is Missing")
+    public void lastNameIsMissing() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        String dateOfBirth=".custom-date";
-        String firstName="input[id=\"member_firstname\"][name=\"Forename\"]\n";
-        String lastName="input[id=\"member_lastname\"][name=\"Surname\"]";
-        String email ="input[id=\"member_emailaddress\"][name=\"EmailAddress\"]";
-        String confirmEmail="input[id=\"member_confirmemailaddress\"][name=\"ConfirmEmailAddress\"]";
-        String password="#signupunlicenced_password";
-        String retypePassword="#signupunlicenced_confirmpassword";
-        String confirmTermsAndConditions="label[for='sign_up_25']";
-        String iAmAgedOver18="label[for='sign_up_26']";
-        String confirmCodeOfEthics="label[for='fanmembersignup_agreetocodeofethicsandconduct']";
-        String confirmAndJoin ="#signup_form > div.form-actions.noborder > input";
+        String dateOfBirth = ".custom-date";
+        String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
+        String email = "input[id=\"member_emailaddress\"][name=\"EmailAddress\"]";
+        String confirmEmail = "input[id=\"member_confirmemailaddress\"][name=\"ConfirmEmailAddress\"]";
+        String password = "#signupunlicenced_password";
+        String retypePassword = "#signupunlicenced_confirmpassword";
+        String confirmTermsAndConditions = "label[for='sign_up_25']";
+        String iAmAgedOver18 = "label[for='sign_up_26']";
+        String confirmCodeOfEthics = "label[for='fanmembersignup_agreetocodeofethicsandconduct']";
+        String confirmAndJoin = "#signup_form > div.form-actions.noborder > input";
 
         driver.findElement(By.cssSelector(dateOfBirth))
                 .sendKeys("04/10/1986", Keys.ENTER);
@@ -152,28 +143,23 @@ public class CreateAccountStepdefs {
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmTermsAndConditions)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmTermsAndConditions)).click();
+        waitForElementVisible(
+                By.cssSelector(iAmAgedOver18)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmCodeOfEthics)).click();
+        waitForElementVisible(
+                By.cssSelector(confirmAndJoin)).click();
 
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(iAmAgedOver18)).click();
-
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmCodeOfEthics)).click();
-
-        Thread.sleep(500);
-        driver.findElement(By.cssSelector(confirmAndJoin)).click();
-
-        Thread.sleep(500);
-
-    }
+          }
 
     @Then("I see error {string}")
     public void iSeeError(String message) {
         WebElement errorMessage = waitForElementVisible(
                 By.cssSelector("span[for=\"member_lastname\"]\n"));
 
-        Assert.assertEquals(message,errorMessage.getText().trim());
+        Assert.assertEquals(message, errorMessage.getText().trim());
         System.out.println("Last name is missing");
 
     }
@@ -181,13 +167,13 @@ public class CreateAccountStepdefs {
     @When("I enter {} and {}:")
     public void iEnterAnd(String Password, String ConfirmPassword) {
 
-        String newPassword="#signupunlicenced_password";
-        String retypePassword="#signupunlicenced_confirmpassword";
+        String newPassword = "#signupunlicenced_password";
+        String retypePassword = "#signupunlicenced_confirmpassword";
 
         driver.findElement(By.cssSelector(newPassword))
-                .sendKeys(Password,Keys.ENTER);
+                .sendKeys(Password, Keys.ENTER);
         driver.findElement(By.cssSelector(retypePassword))
-                .sendKeys(ConfirmPassword,Keys.ENTER);
+                .sendKeys(ConfirmPassword, Keys.ENTER);
 
     }
 
@@ -201,7 +187,60 @@ public class CreateAccountStepdefs {
 
         assertEquals(message, actualMessage);
     }
+
+    @When("Confirm registration without Terms and Conditions accept")
+    public void confirmRegistrationWithoutTermsAndConditionsAccept() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        String dateOfBirth = ".custom-date";
+        String firstName = "input[id=\"member_firstname\"][name=\"Forename\"]\n";
+        String lastName = "input[id=\"member_lastname\"][name=\"Surname\"]";
+        String email = "input[id=\"member_emailaddress\"][name=\"EmailAddress\"]";
+        String confirmEmail = "input[id=\"member_confirmemailaddress\"][name=\"ConfirmEmailAddress\"]";
+        String password = "#signupunlicenced_password";
+        String retypePassword = "#signupunlicenced_confirmpassword";
+        String iAmAgedOver18 = "label[for='sign_up_26']";
+        String confirmCodeOfEthics = "label[for='fanmembersignup_agreetocodeofethicsandconduct']";
+        String confirmAndJoin = "#signup_form > div.form-actions.noborder > input";
+
+        driver.findElement(By.cssSelector(dateOfBirth))
+                .sendKeys("04/10/1986", Keys.ENTER);
+        driver.findElement(By.cssSelector(firstName))
+                .sendKeys("Alex", Keys.ENTER);
+        driver.findElement(By.cssSelector(lastName))
+                .sendKeys("Palm", Keys.ENTER);
+
+        String randomEmail = "test" + System.currentTimeMillis() + "@inbox.lv";
+        driver.findElement(By.cssSelector(email))
+                .sendKeys(randomEmail);
+        driver.findElement(By.cssSelector(confirmEmail))
+                .sendKeys(randomEmail);
+        driver.findElement(By.cssSelector(password))
+                .sendKeys("Abcd123");
+        driver.findElement(By.cssSelector(retypePassword))
+                .sendKeys("Abcd123");
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+
+        waitForElementVisible(By.cssSelector(iAmAgedOver18)).click();
+        waitForElementVisible(By.cssSelector(confirmCodeOfEthics)).click();
+        waitForElementVisible(By.cssSelector(confirmAndJoin)).click();
+
     }
+
+    @Then("I see error message")
+    public void iSeeErrorMessage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        WebElement error = waitForElementVisible(
+                By.cssSelector("span[for=\"TermsAccept\"]"));
+
+        String expectedErrorMessage = "You must confirm that you have read and accepted our Terms and Conditions";
+        assertEquals(expectedErrorMessage, error.getText().trim());
+
+    }
+}
 
 
 

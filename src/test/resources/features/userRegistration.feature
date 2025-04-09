@@ -1,7 +1,7 @@
 Feature:
 
   Scenario: Account is Created
-    Given I am using "chrome" browser
+    Given I am using "edge" browser
     * I am currently on the website "https://membership.basketballengland.co.uk/NewSupporterAccount"
     When I enter all required information and click "CONFIRM AND JOIN"
     Then I see "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND"
@@ -9,7 +9,7 @@ Feature:
   Scenario: Last Name is Missing
     Given I am using "chrome" browser
     * I am currently on the website "https://membership.basketballengland.co.uk/NewSupporterAccount"
-    When I enter all required information except "Last Name" and click "CONFIRM AND JOIN"
+    When Last Name is Missing
     Then I see error "Last Name is required"
 
   Scenario Outline: Passwords Do Not Match
@@ -24,3 +24,7 @@ Feature:
       | Abcd123  | A               | Password must be between 5 and 20 characters |
 
   Scenario: Terms and Conditions Not Accepted
+    Given I am using "chrome" browser
+    * I am currently on the website "https://membership.basketballengland.co.uk/NewSupporterAccount"
+    When Confirm registration without Terms and Conditions accept
+    Then I see error message
