@@ -3,7 +3,7 @@ Feature:
   Scenario: Account is Created
     Given I am using "edge" browser
     * I am currently on the website "https://membership.basketballengland.co.uk/NewSupporterAccount"
-    When I enter all required information and click "CONFIRM AND JOIN"
+    When I enter all required information and click confirm and join
     Then I see "THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND"
 
   Scenario: Last Name is Missing
