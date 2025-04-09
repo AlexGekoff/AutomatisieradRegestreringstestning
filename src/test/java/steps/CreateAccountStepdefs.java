@@ -22,7 +22,7 @@ public class CreateAccountStepdefs {
     WebDriver driver;
     WebDriverWait wait;
 
-    private WebElement waitForElementVisible(By locator) {
+    private WebElement waitForElementClickable(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -76,13 +76,13 @@ public class CreateAccountStepdefs {
                 .sendKeys("Abcd123");
 
 
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmTermsAndConditions)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(iAmAgedOver18)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmCodeOfEthics)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmAndJoin)).click();
 
     }
@@ -90,7 +90,7 @@ public class CreateAccountStepdefs {
     @Then("I see {string}")
     public void iSee(String confirmation) {
 
-        WebElement thankYouMessage = waitForElementVisible(
+        WebElement thankYouMessage = waitForElementClickable(
                 By.xpath("//h2[contains(text(), 'THANK YOU FOR CREATING AN ACCOUNT WITH BASKETBALL ENGLAND')]")
         );
 
@@ -128,20 +128,20 @@ public class CreateAccountStepdefs {
                 .sendKeys("Abcd123");
 
 
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmTermsAndConditions)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(iAmAgedOver18)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmCodeOfEthics)).click();
-        waitForElementVisible(
+        waitForElementClickable(
                 By.cssSelector(confirmAndJoin)).click();
 
     }
 
     @Then("I see error {string}")
     public void iSeeError(String message) {
-        WebElement errorMessage = waitForElementVisible(
+        WebElement errorMessage = waitForElementClickable(
                 By.cssSelector("span[for=\"member_lastname\"]\n"));
 
         assertEquals(message, errorMessage.getText().trim());
@@ -201,16 +201,16 @@ public class CreateAccountStepdefs {
                 .sendKeys("Abcd123");
 
 
-        waitForElementVisible(By.cssSelector(iAmAgedOver18)).click();
-        waitForElementVisible(By.cssSelector(confirmCodeOfEthics)).click();
-        waitForElementVisible(By.cssSelector(confirmAndJoin)).click();
+        waitForElementClickable(By.cssSelector(iAmAgedOver18)).click();
+        waitForElementClickable(By.cssSelector(confirmCodeOfEthics)).click();
+        waitForElementClickable(By.cssSelector(confirmAndJoin)).click();
 
     }
 
     @Then("I see error message")
     public void iSeeErrorMessage() {
 
-        WebElement error = waitForElementVisible(
+        WebElement error = waitForElementClickable(
                 By.cssSelector("span[for=\"TermsAccept\"]"));
 
         String expectedErrorMessage = "You must confirm that you have read and accepted our Terms and Conditions";
