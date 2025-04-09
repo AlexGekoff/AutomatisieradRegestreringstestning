@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -76,10 +75,6 @@ public class CreateAccountStepdefs {
         driver.findElement(By.cssSelector(retypePassword))
                 .sendKeys("Abcd123");
 
-//        Actions actions = new Actions(driver);
-//        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
-//
-//        Thread.sleep(5000);
 
         waitForElementVisible(
                 By.cssSelector(confirmTermsAndConditions)).click();
@@ -132,8 +127,6 @@ public class CreateAccountStepdefs {
         driver.findElement(By.cssSelector(retypePassword))
                 .sendKeys("Abcd123");
 
-        Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
         waitForElementVisible(
                 By.cssSelector(confirmTermsAndConditions)).click();
@@ -207,8 +200,6 @@ public class CreateAccountStepdefs {
         driver.findElement(By.cssSelector(retypePassword))
                 .sendKeys("Abcd123");
 
-//        Actions actions = new Actions(driver);
-//        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
         waitForElementVisible(By.cssSelector(iAmAgedOver18)).click();
         waitForElementVisible(By.cssSelector(confirmCodeOfEthics)).click();
